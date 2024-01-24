@@ -9,8 +9,14 @@ body{
     min-height: 100vh;
     background-color: slategrey;
 }
-.main-text{
+.title{
     font-weight: 700;
     text-align: center;
     padding-top: 24px;
+}
+
+.text{
+    text-align: center;
+    margin-top: 16px;
+    font-size: 32px;
 }

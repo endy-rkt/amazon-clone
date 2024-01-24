@@ -14,6 +14,16 @@ app.use('/',express.static(path.join(__dirname,'/public')));
 
 app.use('/',rootRoute);
 
+app.all('*',(req,res)=>{
+	res.status(404);
+	if (req.accepts('html'))
+		res.sendFile(path.join(__dirname,'views','page404.html'));
+	else if (req.accepts('json'))
+		res.json({message: 'Page not found'});
+	else
+		res.type('txt').send('Page not found');
+});
+
 //PORT needs to set the value of the one used in production
 mongoose.connection.once('open',()=>{
 	console.log('Connected to mongoDB');
