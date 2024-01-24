@@ -1,7 +1,9 @@
-import express from 'express';
+import express,{Request, Response} from 'express';
 import path from 'path';
 import 'dotenv/config';
 import mongoose from 'mongoose';
+import  cors from 'cors';
+import { corsOptions } from './config/corsOptions';
 import { dbConnection } from './config/dbConnection';
 import rootRoute from './routes/root';
 import { logger } from './middlewares/logger';
@@ -12,11 +14,13 @@ const PORT = process.env.PORT;
 dbConnection();
 
 app.use(logger);
+app.use(cors<Request>(corsOptions));
+
 app.use('/',express.static(path.join(__dirname,'/public')));
 
 app.use('/',rootRoute);
 
-app.all('*',(req,res)=>{
+app.all('*',(req:Request,res:Response)=>{
 	res.status(404);
 	if (req.accepts('html'))
 		res.sendFile(path.join(__dirname,'views','page404.html'));
