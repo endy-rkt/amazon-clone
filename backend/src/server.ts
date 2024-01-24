@@ -4,12 +4,14 @@ import 'dotenv/config';
 import mongoose from 'mongoose';
 import { dbConnection } from './config/dbConnection';
 import rootRoute from './routes/root';
+import { logger } from './middlewares/logger';
 
 const app = express();
 const PORT = process.env.PORT;
 
 dbConnection();
 
+app.use(logger);
 app.use('/',express.static(path.join(__dirname,'/public')));
 
 app.use('/',rootRoute);

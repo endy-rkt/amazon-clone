@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node ./public/server.js",
     "compile": "tsc && node ./public/server.js",
-    "dev":"npx nodemon",
+    "dev": "npx nodemon",
     "lint": "eslint  .",
     "fixLint": "eslint --fix ."
   },
@@ -26,8 +26,11 @@
     "uuid": "^9.0.1"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
+    "@types/jsonwebtoken": "^9.0.5",
     "@types/node": "^20.11.5",
+    "@types/uuid": "^9.0.7",
     "@typescript-eslint/eslint-plugin": "^6.19.1",
     "@typescript-eslint/parser": "^6.19.1",
     "eslint": "^8.56.0",
