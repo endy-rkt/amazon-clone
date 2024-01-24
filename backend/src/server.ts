@@ -3,6 +3,7 @@ import path from 'path';
 import 'dotenv/config';
 import mongoose from 'mongoose';
 import  cors from 'cors';
+import { logEvents } from './middlewares/logger';
 import { corsOptions } from './config/corsOptions';
 import { dbConnection } from './config/dbConnection';
 import rootRoute from './routes/root';
@@ -36,4 +37,8 @@ mongoose.connection.once('open',()=>{
 	app.listen(PORT, ()=>{
 		console.log(`Server listening to port ${PORT}`);
 	});
+});
+
+mongoose.connection.on('error',err =>{
+	logEvents(`${err.no}\t${err.code}\t${err.syscall}\t${err.hostname}`,'mongoErrLog.log');
 });
