@@ -41,7 +41,7 @@ const computerSchema = new mongoose.Schema<Computer>({
 	promotion: Number,
 	details: {
 		type : {
-			type : 'UC' || 'Laptop',
+			type : ['UC','Laptop'],
 			brand : String,
 			modelName : String,
 			screenSize:Number,
