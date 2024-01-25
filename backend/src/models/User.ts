@@ -4,7 +4,7 @@ interface User{
     name :  string,
     email: string,
     password: string,
-    role : string
+    role : 'admin' | 'manager' | 'customer'
 }
 
 const userSchema = new mongoose.Schema<User>({
@@ -22,6 +22,7 @@ const userSchema = new mongoose.Schema<User>({
 	},
 	role:{
 		type:String,
+		enum:['admin','manager','customer'],
 		default:'customer',
 		required:true
 	}
