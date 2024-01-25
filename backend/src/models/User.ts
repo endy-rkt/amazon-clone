@@ -3,7 +3,8 @@ import mongoose from 'mongoose';
 interface User{
     name :  string,
     email: string,
-    password: string
+    password: string,
+    role : string
 }
 
 const userSchema = new mongoose.Schema<User>({
@@ -17,6 +18,11 @@ const userSchema = new mongoose.Schema<User>({
 	},
 	password:{
 		type:String,
+		required:true
+	},
+	role:{
+		type:String,
+		default:'customer',
 		required:true
 	}
 },{
