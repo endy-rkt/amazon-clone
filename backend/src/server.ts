@@ -31,7 +31,7 @@ app.all('*',(req:Request,res:Response)=>{
 		res.type('txt').send('Page not found');
 });
 
-//PORT needs to set the value of the one used in production
+//Set the value of PORT to the one used in production
 mongoose.connection.once('open',()=>{
 	console.log('Connected to mongoDB');
 	app.listen(PORT, ()=>{
