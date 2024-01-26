@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-interface Hat{
+export interface IHat extends mongoose.Document{
     title: string,
     rating: number,
     price : number,
@@ -18,7 +18,7 @@ interface Hat{
     imagesUrl:string[]
 }
 
-const hatSchema = new mongoose.Schema<Hat>({
+export const hatSchema = new mongoose.Schema({
 	title: {
 		type:String,
 		required: true
@@ -65,4 +65,4 @@ const hatSchema = new mongoose.Schema<Hat>({
 	timestamps:true
 });
 
-export const Hat = mongoose.model('Hat',hatSchema);
+export const Hat = mongoose.model<IHat>('Hat',hatSchema);

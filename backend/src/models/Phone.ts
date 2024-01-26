@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-interface Phone{
+export interface IPhone extends mongoose.Document{
     title: string,
     rating: number,
     price : number,
@@ -22,7 +22,7 @@ interface Phone{
     imagesUrl:string[]
 }
 
-const phoneSchema = new mongoose.Schema<Phone>({
+export const phoneSchema = new mongoose.Schema({
 	title: {
 		type:String,
 		required: true
@@ -76,4 +76,4 @@ const phoneSchema = new mongoose.Schema<Phone>({
 	timestamps:true
 });
 
-export const Phone = mongoose.model('Phone',phoneSchema);
+export const Phone = mongoose.model<IPhone>('Phone',phoneSchema);

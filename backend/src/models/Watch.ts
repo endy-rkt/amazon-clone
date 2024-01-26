@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-interface Watch{
+export interface IWatch extends mongoose.Document{
     title: string,
     rating: number,
     price : number,
@@ -19,7 +19,7 @@ interface Watch{
     imagesUrl:string[]
 }
 
-const watchSchema = new mongoose.Schema<Watch>({
+export const watchSchema = new mongoose.Schema({
 	title: {
 		type:String,
 		required: true
@@ -67,4 +67,4 @@ const watchSchema = new mongoose.Schema<Watch>({
 	timestamps:true
 });
 
-export const Watch = mongoose.model('Watch',watchSchema);
+export const Watch = mongoose.model<IWatch>('Watch',watchSchema);

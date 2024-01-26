@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-interface Shoes{
+export interface IShoes extends mongoose.Document{
     title: string,
     rating: number,
     price : number,
@@ -18,7 +18,7 @@ interface Shoes{
     imagesUrl:string[]
 }
 
-const shoesSchema = new mongoose.Schema<Shoes>({
+export const shoesSchema = new mongoose.Schema({
 	title: {
 		type:String,
 		required: true
@@ -65,4 +65,4 @@ const shoesSchema = new mongoose.Schema<Shoes>({
 	timestamps:true
 });
 
-export const Shoes = mongoose.model('Shoes',shoesSchema);
+export const Shoes = mongoose.model<IShoes>('Shoes',shoesSchema);

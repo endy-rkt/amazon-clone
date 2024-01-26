@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-interface Computer{
+export interface IComputer extends mongoose.Document{
     title: string,
     rating: number,
     price : number,
@@ -21,7 +21,7 @@ interface Computer{
     imagesUrl:string[]
 }
 
-const computerSchema = new mongoose.Schema<Computer>({
+export const computerSchema = new mongoose.Schema({
 	title: {
 		type:String,
 		required: true
@@ -41,7 +41,7 @@ const computerSchema = new mongoose.Schema<Computer>({
 	promotion: Number,
 	details: {
 		type : {
-			type : ['UC','Laptop'],
+			type : ['UC','laptop'],
 			brand : String,
 			modelName : String,
 			screenSize:Number,
@@ -65,4 +65,4 @@ const computerSchema = new mongoose.Schema<Computer>({
 	timestamps:true
 });
 
-export const Computer = mongoose.model('Computer',computerSchema);
+export const Computer = mongoose.model<IComputer>('Computer',computerSchema);
