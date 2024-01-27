@@ -7,6 +7,7 @@ import { logEvents } from './middlewares/logger';
 import { corsOptions } from './config/corsOptions';
 import { dbConnection } from './config/dbConnection';
 import rootRoute from './routes/root';
+import userRoute from './routes/userRoutes';
 import { logger } from './middlewares/logger';
 
 const app = express();
@@ -20,6 +21,7 @@ app.use(cors<Request>(corsOptions));
 app.use('/',express.static(path.join(__dirname,'/public')));
 
 app.use('/',rootRoute);
+app.use('/api/user',userRoute);
 
 app.all('*',(req:Request,res:Response)=>{
 	res.status(404);

@@ -3,7 +3,7 @@ import path from 'path';
 
 const router = express.Router();
 
-router.get('/',(req,res)=>{
+router.get(['/','/api'],(req,res)=>{
 	res.sendFile(path.join(__dirname,'..','views','index.html'));
 });
 

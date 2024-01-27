@@ -1,10 +1,12 @@
 import mongoose,{Document} from 'mongoose';
 
+type t_role = 'admin' | 'manager' | 'customer';
+
 export interface IUser extends Document {
     name :  string,
     email: string,
     password: string,
-    role : 'admin' | 'manager' | 'customer'
+    role?: t_role[]
 }
 
 export const userSchema = new mongoose.Schema({
@@ -21,10 +23,9 @@ export const userSchema = new mongoose.Schema({
 		required:true
 	},
 	role:{
-		type:String,
+		type:[String],
 		enum:['admin','manager','customer'],
-		default:'customer',
-		required:true
+		default:'customer'
 	}
 },{
 	timestamps:true

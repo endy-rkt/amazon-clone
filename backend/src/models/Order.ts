@@ -10,7 +10,7 @@ import { watchSchema } from './Watch';
 export interface IOrder extends Document{
     listOfProducts:[object],
     customer:Types.ObjectId,
-    delivryDate:string,
+    deliveryDate:string,
     location:string
 }
 
@@ -24,7 +24,7 @@ export const orderSchema = new mongoose.Schema({
 		ref: 'User',
 		required:true
 	},
-	delivryDate:{
+	deliveryDate:{
 		type: String,
 		required:true
 	},
