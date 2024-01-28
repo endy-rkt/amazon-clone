@@ -46,14 +46,26 @@ export const watchSchema = new mongoose.Schema({
 	},
 	promotion: Number,
 	details: {
-		type : {
-			productDimension: String,
-			modelNumber: String,
-			batteries: String,
-			manufacturer: String,
-			origin: String
+		productDimension: {
+			type:String,
+			required:true
 		},
-		required:true
+		modelNumber: {
+			type:String,
+			required:true
+		},
+		batteries: {
+			type:String,
+			required:true
+		},
+		manufacturer: {
+			type:String,
+			required:true
+		},
+		origin: {
+			type:String,
+			required:true
+		}
 	},
 	aboutItem:{
 		type: String,

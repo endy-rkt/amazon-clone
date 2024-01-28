@@ -49,16 +49,34 @@ export const phoneSchema = new mongoose.Schema({
 	},
 	promotion: Number,
 	details: {
-		type : {
-			brand : String,
-			modelName : String,
-			os : String,
-			cellularTech:[String],
-			screenSize:Number,
-			memoryCapacity: Number,
-			ramSize: Number,
+		brand : {
+			type:String,
+			required:true
 		},
-		required:true
+		modelName : {
+			type:String,
+			required:true
+		},
+		os : {
+			type:String,
+			required:true
+		},
+		cellularTech:{
+			type:[String],
+			required:true
+		},
+		screenSize:{
+			type:Number,
+			required:true
+		},
+		memoryCapacity: {
+			type:Number,
+			required:true
+		},
+		ramSize: {
+			type:Number,
+			required:true
+		},
 	},
 	aboutItem:{
 		type: String,

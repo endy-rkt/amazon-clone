@@ -40,25 +40,40 @@ export const bookSchema = new mongoose.Schema({
 	},
 	promotion: Number,
 	details: {
-		type : {
-			hardCover: Number,
-			author:String,
-			publisher: String,
-			language:String,
-			isbn: String,
+		hardCover: {
+			type:Number,
+			required:true
 		},
-		required:true
+		author:{
+			type:String,
+			required:true
+		},
+		publisher: {
+			type:String,
+			required:true
+		},
+		language:{
+			type:String,
+			required:true
+		},
+		isbn: {
+			type:String,
+			required:true
+		}
 	},
 	abstract: {
 		type:String,
 		required:true
 	},
 	editorReview:{
-		type:{
-			review:String,
-			author:String
+		review:{
+			type:String,
+			required:true
 		},
-		required: true
+		author:{
+			type:String,
+			required:true
+		}
 	},
 	imagesUrl:{
 		type: [String],

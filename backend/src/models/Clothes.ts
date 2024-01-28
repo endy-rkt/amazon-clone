@@ -44,12 +44,18 @@ export const clothesSchema = new mongoose.Schema({
 	},
 	promotion: Number,
 	details: {
-		type : {
-			dimension:String,
-			fabricType: String,
-			manufacturer: String,
+		dimension:{
+			type:String,
+			required:true
 		},
-		required:true
+		fabricType: {
+			type:String,
+			required:true
+		},
+		manufacturer: {
+			type:String,
+			required:true
+		},
 	},
 	aboutItem:{
 		type: String,

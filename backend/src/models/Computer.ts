@@ -40,18 +40,39 @@ export const computerSchema = new mongoose.Schema({
 	},
 	promotion: Number,
 	details: {
-		type : {
-			type : ['UC','laptop'],
-			brand : String,
-			modelName : String,
-			screenSize:Number,
-			color : [String],
-			diskSize: [String],
-			cpuModel: String,
-			ramSize: Number,
-			gpuCard: [String] 
+		type : ['UC','laptop'],
+		brand : {
+			type:String,
+			required:true
 		},
-		required:true
+		modelName : {
+			type:String,
+			required:true
+		},
+		screenSize:{
+			type:String,
+			required:true
+		},
+		color : {
+			type:[String],
+			required:true
+		},
+		diskSize: {
+			type:[String],
+			required:true
+		},
+		cpuModel: {
+			type:String,
+			required:true
+		},
+		ramSize: {
+			type:Number,
+			required:true
+		},
+		gpuCard: {
+			type:[String],
+			required:true
+		} 
 	},
 	aboutItem:{
 		type: String,

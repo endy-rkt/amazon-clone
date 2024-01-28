@@ -45,13 +45,22 @@ export const hatSchema = new mongoose.Schema({
 	},
 	promotion: Number,
 	details: {
-		type : {
-			origin:String,
-			modelNumber: String,
-			fabricType:String,
-			manufacturer: String,
+		origin:{
+			type:String,
+			required:true
 		},
-		required:true
+		modelNumber: {
+			type:String,
+			required:true
+		},
+		fabricType:{
+			type:String,
+			required:true
+		},
+		manufacturer: {
+			type:String,
+			required:true
+		},
 	},
 	aboutItem:{
 		type: String,

@@ -45,13 +45,22 @@ export const shoesSchema = new mongoose.Schema({
 	},
 	promotion: Number,
 	details: {
-		type : {
-			inches:String,
-			fabricType: String,
-			soleMaterial:String,
-			manufacturer: String,
+		inches:{
+			type:String,
+			required:true
 		},
-		required:true
+		fabricType: {
+			type:String,
+			required:true
+		},
+		soleMaterial:{
+			type:String,
+			required:true
+		},
+		manufacturer: {
+			type:String,
+			required:true
+		},
 	},
 	aboutItem:{
 		type: String,
