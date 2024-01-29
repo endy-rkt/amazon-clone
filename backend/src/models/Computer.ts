@@ -7,7 +7,7 @@ export interface IComputer extends mongoose.Document{
 	number : number,
     promotion : number,
     details: {
-        type : 'UC' | 'Laptop',
+        type : 'UC' | 'laptop',
         brand : string,
         modelName : string,
         screenSize:number,
@@ -40,7 +40,11 @@ export const computerSchema = new mongoose.Schema({
 	},
 	promotion: Number,
 	details: {
-		type : ['UC','laptop'],
+		type : {
+			type:String,
+			enum:['UC','laptop'],
+			required : true
+		},
 		brand : {
 			type:String,
 			required:true

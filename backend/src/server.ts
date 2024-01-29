@@ -8,6 +8,7 @@ import { corsOptions } from './config/corsOptions';
 import { dbConnection } from './config/dbConnection';
 import rootRoute from './routes/root';
 import userRoute from './routes/userRoutes';
+import bookRoutes from './routes/bookRoutes';
 import { logger } from './middlewares/logger';
 
 const app = express();
@@ -23,6 +24,8 @@ app.use('/',express.static(path.join(__dirname,'/public')));
 
 app.use('/',rootRoute);
 app.use('/api/user',userRoute);
+app.use('/api/book',bookRoutes);
+
 
 app.all('*',(req:Request,res:Response)=>{
 	res.status(404);

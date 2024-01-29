@@ -1,24 +1,23 @@
 import mongoose from 'mongoose';
 
-export interface IShoes extends mongoose.Document{
+export interface IClothe extends mongoose.Document{
     title: string,
     rating: number,
     price : number,
-    promotion : number,
 	number :number,
+    promotion : number,
 	size:string[],
 	color:string[],
     details: {
-        inches:string,
+        dimension:string,
 		fabricType: string,
-		soleMaterial:string,
 		manufacturer: string,
     },
     aboutItem:string,
     imagesUrl:string[]
 }
 
-export const shoesSchema = new mongoose.Schema({
+export const clotheSchema = new mongoose.Schema({
 	title: {
 		type:String,
 		required: true
@@ -45,15 +44,11 @@ export const shoesSchema = new mongoose.Schema({
 	},
 	promotion: Number,
 	details: {
-		inches:{
+		dimension:{
 			type:String,
 			required:true
 		},
 		fabricType: {
-			type:String,
-			required:true
-		},
-		soleMaterial:{
 			type:String,
 			required:true
 		},
@@ -74,4 +69,4 @@ export const shoesSchema = new mongoose.Schema({
 	timestamps:true
 });
 
-export const Shoes = mongoose.model<IShoes>('Shoes',shoesSchema);
+export const Clothe = mongoose.model<IClothe>('Clothe',clotheSchema);
