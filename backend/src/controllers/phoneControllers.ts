@@ -147,5 +147,6 @@ export{
 	getPhone,
 	createPhone,
 	updatedPhone,
-	deletePhone
+	deletePhone,
+	PhoneClass
 };

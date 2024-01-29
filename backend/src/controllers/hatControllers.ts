@@ -139,5 +139,6 @@ export{
 	getHat,
 	createHat,
 	updatedHat,
-	deleteHat
+	deleteHat,
+	HatClass
 };

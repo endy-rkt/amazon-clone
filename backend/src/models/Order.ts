@@ -1,14 +1,15 @@
 import mongoose,{Document, Types} from 'mongoose';
-import { bookSchema } from './Book';
-import { clotheSchema } from './Clothe';
-import { computerSchema } from './Computer';
-import { hatSchema } from './Hat';
-import { phoneSchema } from './Phone';
-import { shoeSchema } from './Shoe';
-import { watchSchema } from './Watch';
+import { BookClass } from '../controllers/bookControllers';
+import { ClotheClass } from '../controllers/clotheControllers';
+import { ComputerClass } from '../controllers/computerControllers';
+import { HatClass } from '../controllers/hatControllers';
+import { PhoneClass } from '../controllers/phoneControllers';
+import { ShoeClass } from '../controllers/shoeControllers';
+import { WatchClass } from '../controllers/watchControllers';
 
+type t_product = BookClass | ClotheClass | ComputerClass | HatClass | PhoneClass | ShoeClass | WatchClass;
 export interface IOrder extends Document{
-    listOfProducts:[object],
+    listOfProducts:[t_product],
     customer:Types.ObjectId,
     deliveryDate:string,
     location:string
@@ -16,7 +17,7 @@ export interface IOrder extends Document{
 
 export const orderSchema = new mongoose.Schema({
 	listOfProducts:{
-		type:[bookSchema || computerSchema || clotheSchema || hatSchema || phoneSchema || shoeSchema || watchSchema],
+		type:[Object],
 		required:true
 	},
 	customer:{

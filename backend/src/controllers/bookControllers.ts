@@ -146,5 +146,6 @@ export{
 	getBook,
 	createBook,
 	updatedBook,
-	deleteBook
+	deleteBook,
+	BookClass
 };

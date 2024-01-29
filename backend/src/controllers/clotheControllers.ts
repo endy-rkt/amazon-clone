@@ -137,5 +137,6 @@ export{
 	getClothe,
 	createClothe,
 	updatedClothe,
-	deleteClothe
+	deleteClothe,
+	ClotheClass
 };

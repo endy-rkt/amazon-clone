@@ -146,5 +146,6 @@ export{
 	getComputer,
 	createComputer,
 	updatedComputer,
-	deleteComputer
+	deleteComputer,
+	ComputerClass
 };

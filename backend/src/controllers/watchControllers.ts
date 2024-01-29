@@ -142,5 +142,6 @@ export{
 	getWatch,
 	createWatch,
 	updatedWatch,
-	deleteWatch
+	deleteWatch,
+	WatchClass
 };

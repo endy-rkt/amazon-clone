@@ -139,5 +139,6 @@ export{
 	getShoe,
 	createShoe,
 	updatedShoe,
-	deleteShoe
+	deleteShoe,
+	ShoeClass
 };
