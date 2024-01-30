@@ -98,7 +98,7 @@ const deleteUser = async(req:Request,res:Response) =>{
 		if (!deletedUser.acknowledged)
 			return res.status(400).json({message:'Error when deleting the user'});
 		else 
-			return res.json({message:`User ${user.name} id deleted`});
+			return res.json({message:`User ${user.name} is deleted`});
 	} catch (error) {
 		console.log(error);
 	}

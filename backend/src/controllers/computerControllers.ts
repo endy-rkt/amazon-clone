@@ -61,10 +61,12 @@ const createComputer = async (req:Request, res:Response) =>{
 		if (duplicate)
 			return res.status(404).json({message:'This computer exists already'});
 
-		const missingData = !title || !rating  || !price || !number  || !details || !details.type || !details.brand || !details.modelName || !details.screenSize || !details.color.length || !details.cpuModel || !details.diskSize.length || !details.ramSize || !details.gpuCard.length || !aboutItem || !imagesUrl.length;
+		const missingData = !title || !rating  || !price || !number  || !details || !details.type || !details.brand || !details.modelName || !details.screenSize || !details.color?.length || !details.cpuModel || !details.diskSize?.length || !details.ramSize || !details.gpuCard?.length || !aboutItem || !imagesUrl?.length;
 		if (missingData)
 			return res.status(404).json({message:'All data are required'});
 
+		if (details?.type !== 'UC' && details?.type !== 'laptop')
+			return res.status(404).json({message:'Invalid data passed'});
 		promotion = (promotion) ? promotion:0;
 		const computer = new ComputerClass(title, rating, price, number, promotion, details, aboutItem, imagesUrl);
 
@@ -112,6 +114,12 @@ const updatedComputer = async(req:Request, res:Response) =>{
 		const dataIsEmpty = !title && !promotion && !rating  && !price && !number  && !details && !aboutItem && !editorReview && !imagesUrl;
 		if (dataIsEmpty)
 			return res.status(404).json({message:'Empty data send'});
+
+		if (details?.type)
+		{
+			if (details.type !== 'UC' && details.type !== 'laptop')
+				return res.status(404).json({message:'Invalid data passed'});
+		}
 
 		updateProductValue(computer,title,rating,price,number,promotion,details,aboutItem,imagesUrl);
 		const updatedComputer = await computer.save();

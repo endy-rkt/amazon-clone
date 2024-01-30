@@ -4,9 +4,9 @@ import { createClothe, deleteClothe, getAllClothes, getClothe, updatedClothe } f
 const router =  express.Router();
 
 router.get('/all',getAllClothes);
-router.get('/:id',getClothe);
 router.post('/new',createClothe);
 router.patch('/update/:id',updatedClothe);
 router.delete('/delete/:id',deleteClothe);
+router.get('/:id',getClothe);
 
 export default router;

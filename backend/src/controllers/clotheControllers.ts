@@ -57,7 +57,7 @@ const createClothe = async (req:Request, res:Response) =>{
 		if (duplicate)
 			return res.status(404).json({message:'This clothe exists already'});
 
-		const missingData = !title || !rating  || !price || !number || !details ||!details.dimension || !details.manufacturer || !details.fabricType || !aboutItem ||!size.length || !color.length || !imagesUrl.length;
+		const missingData = !title || !rating  || !price || !number || !details ||!details.dimension || !details.manufacturer || !details.fabricType || !aboutItem ||!size?.length || !color?.length || !imagesUrl?.length;
 		if (missingData)
 			return res.status(404).json({message:'All data are required'});
 		
@@ -126,7 +126,7 @@ const deleteClothe = async (req:Request, res:Response) =>{
 		if (!deletedClothe.acknowledged)
 			return res.status(400).json({message:'Error when deleting the clothe'});
 		else 
-			return res.json({message:`Clothe ${clothe.title} id deleted`});
+			return res.json({message:`Clothe ${clothe.title} is deleted`});
 	} catch (error) {
 		console.log(error);
 	}

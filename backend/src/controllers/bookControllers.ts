@@ -63,7 +63,7 @@ const createBook = async (req:Request, res:Response) =>{
 		if (duplicate)
 			return res.status(404).json({message:'This book exists already'});
 
-		const missingData = !title || !rating  || !price || !number  || !details || !details.hardCover || !details.author || !details.publisher || !details.language || !details.isbn || !abstract || !editorReview || !editorReview.author  || !editorReview.review || !imagesUrl.length;
+		const missingData = !title || !rating  || !price || !number  || !details || !details.hardCover || !details.author || !details.publisher || !details.language || !details.isbn || !abstract || !editorReview || !editorReview.author  || !editorReview.review || !imagesUrl?.length;
 		if (missingData)
 			return res.status(404).json({message:'All data are required'});
 

@@ -58,7 +58,7 @@ const createHat = async (req:Request, res:Response) =>{
 		if (duplicate)
 			return res.status(404).json({message:'This hat exists already'});
 
-		const missingData = !title || !rating  || !price || !number || !details ||!details.modelNumber || !details.manufacturer || !details.fabricType || !details.origin || !aboutItem ||!size.length || !color.length || !imagesUrl.length;
+		const missingData = !title || !rating  || !price || !number || !details ||!details.modelNumber || !details.manufacturer || !details.fabricType || !details.origin || !aboutItem ||!size?.length || !color?.length || !imagesUrl?.length;
 		if (missingData)
 			return res.status(404).json({message:'All data are required'});
 		
@@ -128,7 +128,7 @@ const deleteHat = async (req:Request, res:Response) =>{
 		if (!deletedHat.acknowledged)
 			return res.status(400).json({message:'Error when deleting the hat'});
 		else 
-			return res.json({message:`Hat ${hat.title} id deleted`});
+			return res.json({message:`Hat ${hat.title} is deleted`});
 	} catch (error) {
 		console.log(error);
 	}

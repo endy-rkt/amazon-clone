@@ -62,7 +62,7 @@ const createPhone = async (req:Request, res:Response) =>{
 		if (duplicate)
 			return res.status(404).json({message:'This phone exists already'});
 
-		const missingData = !title || !rating  || !price || !number || !details ||!details.modelName || !details.cellularTech.length || !details.screenSize || !details.memoryCapacity || !details.os || !details.brand || !aboutItem || !details.ramSize ||!style.length || !color.length || !productDoc.length || !imagesUrl.length;
+		const missingData = !title || !rating  || !price || !number || !details ||!details.modelName || !details.cellularTech?.length || !details.screenSize || !details.memoryCapacity || !details.os || !details.brand || !aboutItem || !details.ramSize ||!style?.length || !color?.length || !productDoc?.length || !imagesUrl?.length;
 		if (missingData)
 			return res.status(404).json({message:'All data are required'});
 		
@@ -136,7 +136,7 @@ const deletePhone = async (req:Request, res:Response) =>{
 		if (!deletedPhone.acknowledged)
 			return res.status(400).json({message:'Error when deleting the phone'});
 		else 
-			return res.json({message:`Phone ${phone.title} id deleted`});
+			return res.json({message:`Phone ${phone.title} is deleted`});
 	} catch (error) {
 		console.log(error);
 	}

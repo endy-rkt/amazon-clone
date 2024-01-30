@@ -9,6 +9,13 @@ import { dbConnection } from './config/dbConnection';
 import rootRoute from './routes/root';
 import userRoute from './routes/userRoutes';
 import bookRoutes from './routes/bookRoutes';
+import clotheRoutes from './routes/clotheRoutes';
+import computerRoutes from './routes/computerRoutes';
+import hatRoutes from './routes/hatRoutes';
+import phoneRoutes from './routes/phoneRoutes';
+import shoeRoutes from './routes/shoeRoutes';
+import watchRoutes from './routes/watchRoutes';
+import orderRoutes from './routes/orderRoutes';
 import { logger } from './middlewares/logger';
 
 const app = express();
@@ -18,13 +25,21 @@ dbConnection();
 
 app.use(logger);
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cors<Request>(corsOptions));
 
 app.use('/',express.static(path.join(__dirname,'/public')));
 
 app.use('/',rootRoute);
 app.use('/api/user',userRoute);
+app.use('/api/clothe',clotheRoutes);
 app.use('/api/book',bookRoutes);
+app.use('/api/computer',computerRoutes);
+app.use('/api/hat',hatRoutes);
+app.use('/api/phone',phoneRoutes);
+app.use('/api/shoe',shoeRoutes);
+app.use('/api/watch',watchRoutes);
+app.use('/api/order',orderRoutes);
 
 
 app.all('*',(req:Request,res:Response)=>{

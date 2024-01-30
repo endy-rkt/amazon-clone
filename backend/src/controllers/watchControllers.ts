@@ -59,7 +59,7 @@ const createWatch = async (req:Request, res:Response) =>{
 		if (duplicate)
 			return res.status(404).json({message:'This watch exists already'});
 
-		const missingData = !title || !rating  || !price || !number || !details ||!details.batteries || !details.manufacturer || !details.modelNumber || !details.origin  || !details.productDimension || !aboutItem ||!style.length || !color.length || !imagesUrl.length;
+		const missingData = !title || !rating  || !price || !number || !details ||!details.batteries || !details.manufacturer || !details.modelNumber || !details.origin  || !details.productDimension || !aboutItem ||!style?.length || !color?.length || !imagesUrl?.length;
 		if (missingData)
 			return res.status(404).json({message:'All data are required'});
 		
@@ -131,7 +131,7 @@ const deleteWatch = async (req:Request, res:Response) =>{
 		if (!deletedWatch.acknowledged)
 			return res.status(400).json({message:'Error when deleting the watch'});
 		else 
-			return res.json({message:`Watch ${watch.title} id deleted`});
+			return res.json({message:`Watch ${watch.title} is deleted`});
 	} catch (error) {
 		console.log(error);
 	}
