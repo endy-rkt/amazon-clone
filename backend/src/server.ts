@@ -16,6 +16,7 @@ import phoneRoutes from './routes/phoneRoutes';
 import shoeRoutes from './routes/shoeRoutes';
 import watchRoutes from './routes/watchRoutes';
 import orderRoutes from './routes/orderRoutes';
+import authRoutes from './routes/userRoutes';
 import { logger } from './middlewares/logger';
 
 const app = express();
@@ -40,7 +41,7 @@ app.use('/api/phone',phoneRoutes);
 app.use('/api/shoe',shoeRoutes);
 app.use('/api/watch',watchRoutes);
 app.use('/api/order',orderRoutes);
-
+app.use('/api/login',authRoutes);
 
 app.all('*',(req:Request,res:Response)=>{
 	res.status(404);
