@@ -1,5 +1,6 @@
 import express,{Request, Response} from 'express';
 import path from 'path';
+import cookieParser from 'cookie-parser';
 import 'dotenv/config';
 import mongoose from 'mongoose';
 import  cors from 'cors';
@@ -16,7 +17,7 @@ import phoneRoutes from './routes/phoneRoutes';
 import shoeRoutes from './routes/shoeRoutes';
 import watchRoutes from './routes/watchRoutes';
 import orderRoutes from './routes/orderRoutes';
-import authRoutes from './routes/userRoutes';
+import authRoutes from './routes/authRoutes';
 import { logger } from './middlewares/logger';
 
 const app = express();
@@ -27,7 +28,9 @@ dbConnection();
 app.use(logger);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 app.use(cors<Request>(corsOptions));
+
 
 app.use('/',express.static(path.join(__dirname,'/public')));
 
@@ -41,7 +44,7 @@ app.use('/api/phone',phoneRoutes);
 app.use('/api/shoe',shoeRoutes);
 app.use('/api/watch',watchRoutes);
 app.use('/api/order',orderRoutes);
-app.use('/api/login',authRoutes);
+app.use('/api/auth',authRoutes);
 
 app.all('*',(req:Request,res:Response)=>{
 	res.status(404);

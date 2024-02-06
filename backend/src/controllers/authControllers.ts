@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import { User } from '../models/User';
 import {Request, Response} from 'express';
-import {sign, verify} from 'jsonwebtoken';
+import {sign, verify, Jwt,JwtPayload,VerifyErrors} from 'jsonwebtoken';
 import { Types } from 'mongoose';
 
 const REFRESH_TOKEN_SECRET : string =  process.env.REFRESH_TOKEN_SECRET!;
@@ -61,15 +61,6 @@ const login = async (req:Request, res:Response) =>{
 	} 
 };
 
-interface Idecoded{
-	'userInfo':{
-		'userId':Types.ObjectId|string,
-		'name':string,
-		'email':string,
-		'role':string[]
-	}
-}
-
 const refreshAuth = (req:Request, res:Response) =>{
 	const cookies = req.cookies;
 
@@ -81,35 +72,50 @@ const refreshAuth = (req:Request, res:Response) =>{
 	verify(
 		refreshToken,
 		REFRESH_TOKEN_SECRET,
-		async (err: Error | null, decoded:string|object| undefined|Idecoded) =>{
+		async (err: VerifyErrors | null, decoded: string | Jwt | JwtPayload | undefined) => {
 			try {
-				if (err)
-					return res.status(400).json({message:'Forbidden'});
-
-				const foundUser = await User.findById(decoded.userId).lean().exec();
-				if (!foundUser)
-					return res.status(400).json({message:'Unauthorized'});
-
+				if (err || !decoded)
+					return res.status(400).json({ message: 'Forbidden' });
+				
+				let userId: string | undefined |Types.ObjectId;
+	
+				if (typeof decoded === 'string')
+					userId = decoded;
+				else if ('userId' in decoded) 
+					userId = decoded.userId;
+				else
+					userId = undefined;
+	
+				if (!userId) {
+					return res.status(400).json({ message: 'Unauthorized' });
+				}
+	
+				const foundUser = await User.findById(userId).lean().exec();
+				if (!foundUser) {
+					return res.status(400).json({ message: 'Unauthorized' });
+				}
+	
 				const accessToken = sign(
 					{
-						'userInfo':{
-							'userId':foundUser._id,
-							'name':foundUser.name,
-							'email':foundUser.email,
-							'role':foundUser.role
+						userInfo: {
+							userId: foundUser._id,
+							name: foundUser.name,
+							email: foundUser.email,
+							role: foundUser.role
 						}
 					},
 					ACCESS_TOKEN_SECRET,
 					{
-						expiresIn:'15m'
+						expiresIn: '15m'
 					}
 				);
-				res.json({accessToken});
+				res.json({ accessToken });
 			} catch (error) {
 				console.log(error);
 			}
 		});
 };
+
 
 const logout = (req:Request, res:Response) =>{
 	const cookies = req.cookies;
@@ -117,6 +123,7 @@ const logout = (req:Request, res:Response) =>{
 	if (!cookies?.jwt)
 		return res.sendStatus(204);
 
+	console.log('ato');
 	res.clearCookie('jwt',{secure:true,httpOnly:true,sameSite:'none'});
 	res.json({message:'Cookie cleared'});
 };
