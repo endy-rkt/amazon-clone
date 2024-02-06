@@ -2,7 +2,6 @@ import bcrypt from 'bcrypt';
 import {Response, Request} from 'express';
 import { User } from '../models/User';
 
-
 type t_role = 'admin' | 'manager' | 'customer';
 
 class UserClass {
