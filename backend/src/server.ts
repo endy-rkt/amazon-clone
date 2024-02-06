@@ -19,6 +19,7 @@ import watchRoutes from './routes/watchRoutes';
 import orderRoutes from './routes/orderRoutes';
 import authRoutes from './routes/authRoutes';
 import { logger } from './middlewares/logger';
+import { errorHandler } from './middlewares/errorHandler';
 
 const app = express();
 const PORT = process.env.PORT;
@@ -55,6 +56,8 @@ app.all('*',(req:Request,res:Response)=>{
 	else
 		res.type('txt').send('Page not found');
 });
+
+app.use(errorHandler);
 
 //Set the value of PORT to the one used in production
 mongoose.connection.once('open',()=>{
